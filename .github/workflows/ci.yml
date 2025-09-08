@@ -12,11 +12,13 @@ jobs:
   lint-mypy:
     name: Lint (mypy)
     runs-on: ubuntu-latest
-    container:
-      image: python:3.11
     steps:
       - uses: actions/checkout@v4
-
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
       - name: Set up Python virtualenv
         run: |
           python3 -m venv venv
@@ -32,11 +34,13 @@ jobs:
   format-black:
     name: Format Check (black)
     runs-on: ubuntu-latest
-    container:
-      image: python:3.11
     steps:
       - uses: actions/checkout@v4
-
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
       - name: Set up Python virtualenv
         run: |
           python3 -m venv venv
@@ -52,11 +56,13 @@ jobs:
   format-isort:
     name: Format (isort)
     runs-on: ubuntu-latest
-    container:
-      image: python:3.11
     steps:
       - uses: actions/checkout@v4
-
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
       - name: Set up Python virtualenv
         run: |
           python3 -m venv venv
@@ -72,11 +78,13 @@ jobs:
   format-flake8:
     name: Format (flake8)
     runs-on: ubuntu-latest
-    container:
-      image: python:3.11
     steps:
       - uses: actions/checkout@v4
-
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
       - name: Set up Python virtualenv
         run: |
           python3 -m venv venv
@@ -103,11 +111,13 @@ jobs:
   format-codespell:
     name: Format (codespell)
     runs-on: ubuntu-latest
-    container:
-      image: python:3.11
     steps:
       - uses: actions/checkout@v4
-
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
       - name: Set up Python virtualenv
         run: |
           python3 -m venv venv
