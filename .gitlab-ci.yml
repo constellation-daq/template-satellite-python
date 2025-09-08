@@ -53,7 +53,7 @@ format:black:
     - .python-3.11
   script:
     - pip install --no-build-isolation -e .[dev]
-    - black --check python/
+    - black --check src/
 
 format:isort:
   extends:
@@ -71,7 +71,7 @@ format:flake8:
     - .python-3.11
   script:
     - pip install --no-build-isolation -e .[dev]
-    - flake8 python/
+    - flake8 src/
 
 format:reuse:
   extends: .format
