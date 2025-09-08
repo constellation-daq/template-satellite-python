@@ -13,7 +13,7 @@ jobs:
     name: Lint (mypy)
     runs-on: ubuntu-latest
     container:
-      image: tollerort.desy.de/hub.docker.com/python:3.11
+      image: python:3.11
     steps:
       - uses: actions/checkout@v4
 
@@ -33,7 +33,7 @@ jobs:
     name: Format Check (black)
     runs-on: ubuntu-latest
     container:
-      image: tollerort.desy.de/hub.docker.com/python:3.11
+      image: python:3.11
     steps:
       - uses: actions/checkout@v4
 
@@ -53,7 +53,7 @@ jobs:
     name: Format (isort)
     runs-on: ubuntu-latest
     container:
-      image: tollerort.desy.de/hub.docker.com/python:3.11
+      image: python:3.11
     steps:
       - uses: actions/checkout@v4
 
@@ -73,7 +73,7 @@ jobs:
     name: Format (flake8)
     runs-on: ubuntu-latest
     container:
-      image: tollerort.desy.de/hub.docker.com/python:3.11
+      image: python:3.11
     steps:
       - uses: actions/checkout@v4
 
@@ -93,7 +93,7 @@ jobs:
     name: Format (reuse)
     runs-on: ubuntu-latest
     container:
-      image: tollerort.desy.de/hub.docker.com/fsfe/reuse:latest
+      image: fsfe/reuse:latest
     steps:
       - uses: actions/checkout@v4
 
@@ -104,7 +104,7 @@ jobs:
     name: Format (codespell)
     runs-on: ubuntu-latest
     container:
-      image: tollerort.desy.de/hub.docker.com/python:3.11
+      image: python:3.11
     steps:
       - uses: actions/checkout@v4
 
