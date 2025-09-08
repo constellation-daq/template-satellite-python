@@ -19,7 +19,9 @@ jobs:
         with:
           python-version: '3.11'
           cache-dependency-path: pyproject.toml
-          install-cmd: pip install --no-build-isolation -e .[dev]
+          install-cmd: |
+            pip install --upgrade pip setuptools
+            pip install --no-build-isolation -e .[dev]
 
       - name: Run mypy
         run: |
@@ -36,7 +38,9 @@ jobs:
         with:
           python-version: '3.11'
           cache-dependency-path: pyproject.toml
-          install-cmd: pip install --no-build-isolation -e .[dev]
+          install-cmd: |
+            pip install --upgrade pip setuptools
+            pip install --no-build-isolation -e .[dev]
 
       - name: Check black formatting
         run: |
@@ -53,7 +57,9 @@ jobs:
         with:
           python-version: '3.11'
           cache-dependency-path: pyproject.toml
-          install-cmd: pip install --no-build-isolation -e .[dev]
+          install-cmd: |
+            pip install --upgrade pip setuptools
+            pip install --no-build-isolation -e .[dev]
 
       - name: Check isort formatting
         run: |
@@ -70,7 +76,9 @@ jobs:
         with:
           python-version: '3.11'
           cache-dependency-path: pyproject.toml
-          install-cmd: pip install --no-build-isolation -e .[dev]
+          install-cmd: |
+            pip install --upgrade pip setuptools
+            pip install --no-build-isolation -e .[dev]
 
       - name: Run flake8
         run: |
@@ -98,7 +106,9 @@ jobs:
         with:
           python-version: '3.11'
           cache-dependency-path: pyproject.toml
-          install-cmd: pip install --no-build-isolation -e .[dev]
+          install-cmd: |
+            pip install --upgrade pip setuptools
+            pip install --no-build-isolation -e .[dev]
 
       - name: Run codespell
         run: |
