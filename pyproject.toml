@@ -43,6 +43,7 @@ dev = [
     "black",
     "mypy",
     "isort",
+    "codespell",
 ]
 
 [tool.flake8]

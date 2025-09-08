@@ -14,7 +14,7 @@ stages:
     - python3 -m venv venv
     - source venv/bin/activate
     - pip install --upgrade pip setuptools
-    - pip install meson-python meson ninja codespell
+    - pip install --no-build-isolation -e .[dev]
 
 .python-3.11:
   image: tollerort.desy.de/hub.docker.com/python:3.11
@@ -37,7 +37,6 @@ lint:mypy:
     - .python-venv
     - .python-3.11
   script:
-    - pip install --no-build-isolation -e .[dev,hdf5,cli]
     - mypy
 
 # format stage
@@ -52,7 +51,6 @@ format:black:
     - .python-venv
     - .python-3.11
   script:
-    - pip install --no-build-isolation -e .[dev]
     - black --check src/
 
 format:isort:
@@ -61,7 +59,6 @@ format:isort:
     - .python-venv
     - .python-3.11
   script:
-    - pip install --no-build-isolation -e .[dev]
     - isort --check .
 
 format:flake8:
@@ -70,7 +67,6 @@ format:flake8:
     - .python-venv
     - .python-3.11
   script:
-    - pip install --no-build-isolation -e .[dev]
     - flake8 src/
 
 format:reuse:
