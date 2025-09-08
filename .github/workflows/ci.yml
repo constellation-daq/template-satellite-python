@@ -24,9 +24,7 @@ jobs:
             pip install --no-build-isolation -e .[dev]
 
       - name: Run mypy
-        run: |
-          source venv/bin/activate
-          mypy src/
+        run: mypy src/
 
   format-black:
     name: Format Check (black)
@@ -43,9 +41,7 @@ jobs:
             pip install --no-build-isolation -e .[dev]
 
       - name: Check black formatting
-        run: |
-          source venv/bin/activate
-          black --check src/
+        run: black --check src/
 
   format-isort:
     name: Format (isort)
@@ -62,9 +58,7 @@ jobs:
             pip install --no-build-isolation -e .[dev]
 
       - name: Check isort formatting
-        run: |
-          source venv/bin/activate
-          isort --check .
+        run: isort --check .
 
   format-flake8:
     name: Format (flake8)
@@ -81,9 +75,7 @@ jobs:
             pip install --no-build-isolation -e .[dev]
 
       - name: Run flake8
-        run: |
-          source venv/bin/activate
-          flake8 src/
+        run: flake8 src/
 
   format-reuse:
     name: Format (reuse)
@@ -111,6 +103,4 @@ jobs:
             pip install --no-build-isolation -e .[dev]
 
       - name: Run codespell
-        run: |
-          source venv/bin/activate
-          codespell
+        run: codespell
