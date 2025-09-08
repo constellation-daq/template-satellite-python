@@ -1,0 +1,88 @@
+# SPDX-FileCopyrightText: 2025 DESY and the Constellation authors
+# SPDX-License-Identifier: CC0-1.0
+
+stages:
+  - lint
+  - format
+
+.python-venv:
+  cache:
+    - key: pip-cache
+      paths:
+        - $PIP_CACHE_DIR/
+  before_script:
+    - python3 -m venv venv
+    - source venv/bin/activate
+    - pip install --upgrade pip setuptools
+    - pip install meson-python meson ninja codespell
+
+.python-3.11:
+  image: tollerort.desy.de/hub.docker.com/python:3.11
+
+.python-3.12:
+  image: tollerort.desy.de/hub.docker.com/python:3.12
+
+.python-3.13:
+  image: tollerort.desy.de/hub.docker.com/python:3.13
+
+# lint stage
+
+.lint:
+  stage: lint
+  needs: []
+
+lint:mypy:
+  extends:
+    - .lint
+    - .python-venv
+    - .python-3.11
+  script:
+    - pip install --no-build-isolation -e .[dev,hdf5,cli]
+    - mypy
+
+# format stage
+
+.format:
+  stage: format
+  needs: []
+
+format:black:
+  extends:
+    - .format
+    - .python-venv
+    - .python-3.11
+  script:
+    - pip install --no-build-isolation -e .[dev]
+    - black --check python/
+
+format:isort:
+  extends:
+    - .format
+    - .python-venv
+    - .python-3.11
+  script:
+    - pip install --no-build-isolation -e .[dev]
+    - isort --check .
+
+format:flake8:
+  extends:
+    - .format
+    - .python-venv
+    - .python-3.11
+  script:
+    - pip install --no-build-isolation -e .[dev]
+    - flake8 python/
+
+format:reuse:
+  extends: .format
+  image: tollerort.desy.de/hub.docker.com/fsfe/reuse:latest
+  script:
+    - reuse lint
+
+format:codespell:
+  extends:
+    - .format
+    - .python-venv
+    - .python-3.11
+  script:
+    - codespell
