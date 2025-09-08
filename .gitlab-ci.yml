@@ -37,7 +37,7 @@ lint:mypy:
     - .python-venv
     - .python-3.11
   script:
-    - mypy
+    - mypy src/
 
 # format stage
 
