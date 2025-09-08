@@ -25,15 +25,15 @@ def rename_template(new_type: str) -> None:
     # Rename class
     file_replace("Template", new_type, src_template.joinpath("Template.py"))
     file_replace("Template", new_type, src_template.joinpath("__main__.py"))
-    file_replace("Template", new_type, pathlib.Path("pyproject.toml"))
+    file_replace("Template", new_type, wd.joinpath("pyproject.toml"))
 
     # Rename folder and class file
     os.rename(src_template.joinpath("Template.py"), src_template.joinpath(new_type + ".py"))
     os.rename(src_template, src.joinpath(new_type))
 
     # Remove default URLs
-    file_replace("https://constellation.pages.desy.de/", "TODO", pathlib.Path("pyproject.toml"))
-    file_replace("https://gitlab.desy.de/constellation/templates/satellite-py", "TODO", pathlib.Path("pyproject.toml"))
+    file_replace("https://constellation.pages.desy.de/", "TODO", wd.joinpath("pyproject.toml"))
+    file_replace("https://gitlab.desy.de/constellation/templates/satellite-py", "TODO", wd.joinpath("pyproject.toml"))
 
     # Remove the rename script
     os.remove(__file__)
