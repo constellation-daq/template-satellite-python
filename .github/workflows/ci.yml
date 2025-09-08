@@ -14,17 +14,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Set up Python Venv
+        uses: getsentry/action-setup-venv@v2.2.0
         with:
           python-version: '3.11'
-          cache: 'pip'
-      - name: Set up Python virtualenv
-        run: |
-          python3 -m venv venv
-          source venv/bin/activate
-          pip install --upgrade pip setuptools
-          pip install --no-build-isolation -e .[dev]
+          cache-dependency-path: pyproject.toml
+          install-cmd: pip install --no-build-isolation -e .[dev]
 
       - name: Run mypy
         run: |
@@ -36,17 +31,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Set up Python Venv
+        uses: getsentry/action-setup-venv@v2.2.0
         with:
           python-version: '3.11'
-          cache: 'pip'
-      - name: Set up Python virtualenv
-        run: |
-          python3 -m venv venv
-          source venv/bin/activate
-          pip install --upgrade pip setuptools
-          pip install --no-build-isolation -e .[dev]
+          cache-dependency-path: pyproject.toml
+          install-cmd: pip install --no-build-isolation -e .[dev]
 
       - name: Check black formatting
         run: |
@@ -58,17 +48,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Set up Python Venv
+        uses: getsentry/action-setup-venv@v2.2.0
         with:
           python-version: '3.11'
-          cache: 'pip'
-      - name: Set up Python virtualenv
-        run: |
-          python3 -m venv venv
-          source venv/bin/activate
-          pip install --upgrade pip setuptools
-          pip install --no-build-isolation -e .[dev]
+          cache-dependency-path: pyproject.toml
+          install-cmd: pip install --no-build-isolation -e .[dev]
 
       - name: Check isort formatting
         run: |
@@ -80,17 +65,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Set up Python Venv
+        uses: getsentry/action-setup-venv@v2.2.0
         with:
           python-version: '3.11'
-          cache: 'pip'
-      - name: Set up Python virtualenv
-        run: |
-          python3 -m venv venv
-          source venv/bin/activate
-          pip install --upgrade pip setuptools
-          pip install --no-build-isolation -e .[dev]
+          cache-dependency-path: pyproject.toml
+          install-cmd: pip install --no-build-isolation -e .[dev]
 
       - name: Run flake8
         run: |
@@ -113,17 +93,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Set up Python Venv
+        uses: getsentry/action-setup-venv@v2.2.0
         with:
           python-version: '3.11'
-          cache: 'pip'
-      - name: Set up Python virtualenv
-        run: |
-          python3 -m venv venv
-          source venv/bin/activate
-          pip install --upgrade pip setuptools
-          pip install --no-build-isolation -e .[dev]
+          cache-dependency-path: pyproject.toml
+          install-cmd: pip install --no-build-isolation -e .[dev]
 
       - name: Run codespell
         run: |
