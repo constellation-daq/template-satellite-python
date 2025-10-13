@@ -26,6 +26,9 @@ Additional information as well as detailed tutorials on how to implement a new s
   * `ReceiverSatellite`: This satellite will receive data during the run
   * `Satellite`: This satellite will neither send nor receive data via CDTP during the run
 * Implement the satellite code
+* Install the Satellite:
+  * From the template's base directory (where the `pyproject.toml` is located), run `pip install ./`
+  * During development, you might want to add the `-e` switch to [install an editable install](https://setuptools.pypa.io/en/latest/userguide/development_mode.html), meaning changes in the source code of your satellite will directly modify the installed version.
 * Run the satellite
 * Update this `README.md`
   * Remove the "First Steps" section
