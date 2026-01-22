@@ -9,73 +9,43 @@ on:
   pull_request:
 
 jobs:
-  lint-mypy:
-    name: Lint (mypy)
+  lint-basedpyright:
+    name: Python Lint Check (basedpyright)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Set up Python Venv
-        uses: getsentry/action-setup-venv@v2.2.0
+        uses: getsentry/action-setup-venv@v3.2.0
         with:
           python-version: "3.11"
           cache-dependency-path: pyproject.toml
-          install-cmd: |
-            pip install --upgrade pip setuptools
-            pip install --no-build-isolation -e .[dev]
 
-      - name: Run mypy
-        run: mypy src/
+      - name: Install
+        run: pip install -e .[dev]
 
-  format-black:
-    name: Format Check (black)
+      - name: Run basedpyright
+        run: basedpyright src
+
+  lint-ruff:
+    name: Python Lint Check (ruff)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python Venv
-        uses: getsentry/action-setup-venv@v2.2.0
+
+      - uses: astral-sh/ruff-action@v3
         with:
-          python-version: "3.11"
-          cache-dependency-path: pyproject.toml
-          install-cmd: |
-            pip install --upgrade pip setuptools
-            pip install --no-build-isolation -e .[dev]
+          args: check
 
-      - name: Check black formatting
-        run: black --check src/
-
-  format-isort:
-    name: Format (isort)
+  format-ruff:
+    name: Python Format Check (ruff)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python Venv
-        uses: getsentry/action-setup-venv@v2.2.0
+
+      - uses: astral-sh/ruff-action@v3
         with:
-          python-version: "3.11"
-          cache-dependency-path: pyproject.toml
-          install-cmd: |
-            pip install --upgrade pip setuptools
-            pip install --no-build-isolation -e .[dev]
-
-      - name: Check isort formatting
-        run: isort --check .
-
-  format-flake8:
-    name: Format (flake8)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up Python Venv
-        uses: getsentry/action-setup-venv@v2.2.0
-        with:
-          python-version: "3.11"
-          cache-dependency-path: pyproject.toml
-          install-cmd: |
-            pip install --upgrade pip setuptools
-            pip install --no-build-isolation -e .[dev]
-
-      - name: Run flake8
-        run: flake8 src/
+          args: format --diff
 
   format-reuse:
     name: Format (reuse)

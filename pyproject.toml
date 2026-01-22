@@ -39,23 +39,22 @@ Repository = "https://gitlab.desy.de/constellation/templates/satellite-py"
 
 [project.optional-dependencies]
 dev = [
-    "flake8", "flake8-pyproject",
-    "black",
-    "mypy",
-    "isort",
-    "codespell",
+    "basedpyright",
+    "ruff",
 ]
 
-[tool.flake8]
-max-line-length = 125
+[tool.pyright]
+typeCheckingMode = "standard"
 
-[tool.black]
+[tool.ruff]
 line-length = 125
 
-[tool.isort]
-profile = "black"
-line_length = 125
-skip_gitignore = true
-
-[tool.mypy]
-python_version = "3.11"
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle
+    "F",   # pyflakes
+    "B",   # flake8-bugbear
+    "A",   # flake8-builtins
+    "I",   # isort
+    "UP",  # pyupgrade
+]
