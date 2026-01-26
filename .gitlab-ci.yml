@@ -5,6 +5,9 @@ stages:
   - lint
   - format
 
+variables:
+  PIP_CACHE_DIR: $CI_PROJECT_DIR/.cache/pip
+
 .python-venv:
   cache:
     - key: pip-cache
@@ -19,25 +22,33 @@ stages:
 .python-3.11:
   image: tollerort.desy.de/hub.docker.com/python:3.11
 
-.python-3.12:
-  image: tollerort.desy.de/hub.docker.com/python:3.12
-
-.python-3.13:
-  image: tollerort.desy.de/hub.docker.com/python:3.13
-
 # lint stage
 
 .lint:
   stage: lint
   needs: []
 
-lint:mypy:
+lint:basedpyright:
   extends:
     - .lint
     - .python-venv
     - .python-3.11
   script:
-    - mypy src/
+    - basedpyright src --gitlabcodequality code-quality-report.json
+  artifacts:
+    reports:
+      codequality: code-quality-report.json
+
+lint:ruff:
+  extends:
+    - .lint
+    - .python-venv
+    - .python-3.11
+  script:
+    - ruff check --output-format=gitlab | tee code-quality-report.json
+  artifacts:
+    reports:
+      codequality: code-quality-report.json
 
 # format stage
 
@@ -45,29 +56,13 @@ lint:mypy:
   stage: format
   needs: []
 
-format:black:
+format:ruff:
   extends:
     - .format
     - .python-venv
     - .python-3.11
   script:
-    - black --check src/
-
-format:isort:
-  extends:
-    - .format
-    - .python-venv
-    - .python-3.11
-  script:
-    - isort --check .
-
-format:flake8:
-  extends:
-    - .format
-    - .python-venv
-    - .python-3.11
-  script:
-    - flake8 src/
+    - ruff format --diff
 
 format:reuse:
   extends: .format
@@ -81,4 +76,5 @@ format:codespell:
     - .python-venv
     - .python-3.11
   script:
+    - pip install codespell
     - codespell
