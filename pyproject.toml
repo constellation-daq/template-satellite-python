@@ -33,6 +33,9 @@ dependencies = [
 [project.scripts]
 SatelliteTemplate = "Template.__main__:main"
 
+[project.entry-points."constellation.satellites"]
+Template = "Template"
+
 [project.urls]
 Homepage = "https://constellation.pages.desy.de/"
 Repository = "https://gitlab.desy.de/constellation/templates/satellite-py"
