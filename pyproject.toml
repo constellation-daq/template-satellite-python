@@ -2,12 +2,12 @@
 # SPDX-License-Identifier: CC0-1.0
 
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "TemplateSatellite"
-version = "0.0.1"
+dynamic = ["version"]
 authors = [{name = "Constellation Authors"}]
 description = "Template Satellite for Constellation"
 readme = "README.md"
@@ -61,3 +61,6 @@ select = [
     "I",   # isort
     "UP",  # pyupgrade
 ]
+
+[tool.setuptools_scm]
+version_scheme = "only-version"

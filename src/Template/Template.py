@@ -5,6 +5,8 @@ SPDX-License-Identifier: EUPL-1.2
 
 from constellation.core.satellite import Satellite
 
+from . import __version__
 
-class Template(Satellite):
+
+class Template(Satellite, version=__version__):
     pass
