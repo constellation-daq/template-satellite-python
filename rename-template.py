@@ -24,6 +24,7 @@ def rename_template(new_type: str) -> None:
 
     # Rename class
     file_replace("Template", new_type, src_template.joinpath("Template.py"))
+    file_replace("Template", new_type, src_template.joinpath("__init__.py"))
     file_replace("Template", new_type, src_template.joinpath("__main__.py"))
     file_replace("Template", new_type, wd.joinpath("pyproject.toml"))
 

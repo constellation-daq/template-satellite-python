@@ -13,7 +13,7 @@ def main(args=None):
     """Template satellite"""
 
     # Get a dict of the parsed arguments
-    parser = SatelliteArgumentParser(description=main.__doc__)
+    parser = SatelliteArgumentParser(description=main.__doc__, version=Template._satellite_version)
     args = vars(parser.parse_args(args))
 
     # Set up logging
